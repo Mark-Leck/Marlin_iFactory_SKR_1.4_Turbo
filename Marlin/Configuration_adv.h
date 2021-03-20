@@ -3472,35 +3472,33 @@
  * User-defined menu items to run custom G-code.
  * Up to 25 may be defined, but the actual number is LCD-dependent.
  */
-//#define CUSTOM_USER_MENUS
+/** 3dm4rk - these are my own custom menus below for the Marlin controler of the lcd,
+ * you can add more or remove what you dont want, if adding more 
+ * then watch your syntax for errors!
+ **/
+#define CUSTOM_USER_MENUS // uncommented as per the shippped printer's firmware
 #if ENABLED(CUSTOM_USER_MENUS)
-  //#define CUSTOM_USER_MENU_TITLE "Custom Commands"
+  #define CUSTOM_USER_MENU_TITLE "Custom Commands"
   #define USER_SCRIPT_DONE "M117 User Script Done"
   #define USER_SCRIPT_AUDIBLE_FEEDBACK
-  //#define USER_SCRIPT_RETURN    // Return to status screen after a script
-  #define CUSTOM_MENU_ONLY_IDLE   // Only show custom menu when the machine is idle
-
-  #define USER_DESC_1 "Home & UBL Info"
-  #define USER_GCODE_1 "G28\nG29W"
-  //#define USER_CONFIRM_1        // Show a confirmation dialog before this action
-
-  #define USER_DESC_2 "Preheat for " PREHEAT_1_LABEL
-  #define USER_GCODE_2 "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
-  //#define USER_CONFIRM_2
-
-  #define USER_DESC_3 "Preheat for " PREHEAT_2_LABEL
-  #define USER_GCODE_3 "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
-  //#define USER_CONFIRM_3
-
-  #define USER_DESC_4 "Heat Bed/Home/Level"
-  #define USER_GCODE_4 "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29"
-  //#define USER_CONFIRM_4
-
-  #define USER_DESC_5 "Home & Info"
-  #define USER_GCODE_5 "G28\nM503"
-  //#define USER_CONFIRM_5
+  #define USER_SCRIPT_RETURN  // Return to status screen after a script
+  #define USER_DESC_1 "Preheat+Purge " PREHEAT_1_LABEL
+   #define USER_GCODE_1 "M109 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nG1 E100 F500"
+  #define USER_DESC_2 "Preheat+Purge " PREHEAT_2_LABEL
+   #define USER_GCODE_2 "M109 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nG1 E100 F500"
+  #define USER_DESC_3 "Preheat+Unload " PREHEAT_1_LABEL
+   #define USER_GCODE_3 "M109 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nG1 E-650 F5000"
+  #define USER_DESC_4 "Preheat+Unload " PREHEAT_2_LABEL
+   #define USER_GCODE_4 "M109 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nG1 E-650 F5000"
+   #define USER_DESC_5 "Preheat+Load " PREHEAT_1_LABEL
+   #define USER_GCODE_5 "M109 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nG1 E590 F5000"
+  #define USER_DESC_6 "Preheat+Load " PREHEAT_2_LABEL
+   #define USER_GCODE_6 "M109 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nG1 E590 F5000"
+ #define USER_DESC_7 "Roll Belt Once"
+  #define USER_GCODE_7 "G91 \nG0 Z788"
+   #define USER_DESC_8 "Remove Print"
+  #define USER_GCODE_8 "G91 \nG0 Z370"
 #endif
-
 /**
  * Host Action Commands
  *
