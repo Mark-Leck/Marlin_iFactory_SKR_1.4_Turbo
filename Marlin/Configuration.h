@@ -1258,15 +1258,15 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 293 // Stock 290
-#define Y_BED_SIZE 286 // Stock 330
+#define X_BED_SIZE 270 // Stock 290
+#define Y_BED_SIZE 285.60 // Stock 330
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 293    // Stock 300
-#define Y_MAX_POS 286 // Stock 330
+#define X_MAX_POS 270    // Stock 300
+#define Y_MAX_POS 285.60 // Stock 330
 #define Z_MAX_POS 99999
 
 /**
@@ -1612,7 +1612,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (35*60) }
+#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (30*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS

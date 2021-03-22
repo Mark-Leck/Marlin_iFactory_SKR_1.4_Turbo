@@ -2776,7 +2776,7 @@
    * Beta feature!
    * Create a 50/50 square wave step pulse optimal for stepper drivers.
    */
-  //#define SQUARE_WAVE_STEPPING
+  #define SQUARE_WAVE_STEPPING
 
   /**
    * Enable M122 debugging command for TMC stepper drivers.
@@ -3498,6 +3498,8 @@
   #define USER_GCODE_7 "G91 \nG0 Z788"
    #define USER_DESC_8 "Remove Print"
   #define USER_GCODE_8 "G91 \nG0 Z370"
+     #define USER_DESC_9 "Purge 100mm"
+  #define USER_GCODE_9 "G1 E100 F300"
 #endif
 /**
  * Host Action Commands
