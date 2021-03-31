@@ -2412,10 +2412,11 @@
    * Override for each driver with <driver>_INTERPOLATE settings below
    */
   #define INTERPOLATE      true
-/** 3dm4rk - WARNING!! If using stock iFcatory steppers then check all currents below!! **/
+/** 3dm4rk - WARNING!! If using stock iFcatory steppers then check all currents below!! 
+ * Lowered homing current for greater sensitivity reaction and softer homing**/
   #if AXIS_IS_TMC(X)
     #define X_CURRENT       1150       // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
+    #define X_CURRENT_HOME  650//X_CURRENT  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16        // 0..256
     #define X_RSENSE          0.11
     #define X_CHAIN_POS      -1        // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
@@ -2433,7 +2434,7 @@
 
   #if AXIS_IS_TMC(Y)
     #define Y_CURRENT       1150
-    #define Y_CURRENT_HOME  Y_CURRENT
+    #define Y_CURRENT_HOME  650//Y_CURRENT
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
     #define Y_CHAIN_POS      -1
@@ -2736,17 +2737,20 @@
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    */
 
-    /** 3dm4rk - WIP..... Still fine tuning, I find Y needs slightly more sensitivity
-     * than X for softer bump stop, bear in mind these settings are for 0.9deg steppers, I found
-     * stock 1.8deg iFactory steppers worked well @ 100 X and 105 Y **/
+    /** 3dm4rk - WIP..... Still fine tuning, I find X now needs slightly more sensitivity
+     * than Y for softer bump stop, bear in mind these settings are for 0.9deg steppers, 
+     * I have also reduced the homing current for both X/Y this has helped tenfold in softer
+     * bump stop.
+     * I found that the stock 1.8deg iFactory steppers worked well @ 
+     * 100 X and 105 Y respectively**/
 
   #define SENSORLESS_HOMING // StallGuard capable drivers only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  120
+    #define X_STALL_SENSITIVITY  105
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY  122
+    #define Y_STALL_SENSITIVITY  91
     #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
     //#define Z_STALL_SENSITIVITY  8
     //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
@@ -3499,7 +3503,7 @@
    #define USER_DESC_8 "Remove Print"
   #define USER_GCODE_8 "G91 \nG0 Z370"
      #define USER_DESC_9 "Purge 100mm"
-  #define USER_GCODE_9 "G1 E100 F300"
+  #define USER_GCODE_9 "G1 E100 F500"
 #endif
 /**
  * Host Action Commands
